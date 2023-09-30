@@ -4,12 +4,8 @@ import Router from "./routes/index";
 //import { AuthenticationProvider } from "./context/AuthenticationContext";
 //import PotionsGrid from "./pages/PotionsGrid";
 
-
-
 function App() {
-  return (
-    <Router/>
-  );
+  return <Router />;
 }
 
 export default App;
