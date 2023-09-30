@@ -52,7 +52,7 @@ function HomeView() {
                 Movies
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Get to know all abou Harry Potter movies!!
+                Get to know all about Harry Potter movies!!
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -76,7 +76,7 @@ function HomeView() {
                 Characters
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Get to know all abou Harry Potter characters!!
+                Get to know all about Harry Potter characters!!
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -100,7 +100,7 @@ function HomeView() {
                 Potions
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Get to know all abou Harry Potter potions!!
+                Get to know all about Harry Potter potions!!
               </Typography>
             </CardContent>
           </CardActionArea>
