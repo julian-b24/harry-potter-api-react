@@ -16,13 +16,13 @@ function Header({ openLoginModal }) {
   return (
     <div
       className="z-50 sticky top-0 w-full  h-16 flex items-center justify-between p-4 drop-shadow-md"
-      style={{ backgroundColor: "#072227" }}
+      style={{ backgroundColor: "#6F61C0" }}
     >
-      <p className="text-white font-tech">Potter fans</p>
+      <p className="text-white harryp text-4xl">Potter Wiki</p>
       {!loggedIn ? (
         <button
-          className="rounded-md py-1 px-2 font-semibold"
-          style={{ backgroundColor: "#4FBDBA" }}
+          className="rounded-md py-1 px-2 font-semibold text-white"
+          style={{ backgroundColor: "#504099" }}
           onClick={openLoginModal}
         >
           Login
@@ -39,8 +39,8 @@ function Header({ openLoginModal }) {
             </>
           )}
           <button
-            className="rounded-md py-1 px-2 font-semibold"
-            style={{ backgroundColor: "#4FBDBA" }}
+            className="rounded-md py-1 px-2 font-semibold text-white"
+            style={{ backgroundColor: "#504099" }}
             onClick={handleLogout}
           >
             Logout

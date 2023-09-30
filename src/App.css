@@ -21,6 +21,15 @@
   padding: 2em;
 }
 
+@font-face {
+  font-family: "HarryP";
+  src: local("HarryP"), url("./fonts/HarryP.ttf") format("truetype");
+}
+
+.harryp {
+  font-family: HarryP;
+}
+
 .read-the-docs {
   color: #888;
 }
