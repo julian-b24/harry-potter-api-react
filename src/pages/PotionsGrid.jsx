@@ -18,19 +18,28 @@ function PotionsGrid() {
     }
   }
 
-  useEffect(() => {getPotions()}, [])
+  useEffect(() => { getPotions() }, [])
 
   const renderPotions = () => {
-    return potions.map((potion) => 
-      (<Grid item xs={6} key={potion.id}>
-        <PotionCard key={potion.id} potion={potion}/>
-      </Grid>)
+    return potions.map((potion) =>
+    (<Grid item
+      height="140"
+      key={potion.id}
+      sx={{ height: 550, padding: 2, alignContent: 'center', display: 'flex' }}
+    >
+      <PotionCard key={potion.id} potion={potion} />
+    </Grid>)
     )
   }
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid container
+        alignItems="center"
+        rowSpacing={1}
+        columns={{ xs: 5 }}
+        sx={{ justifyContent: 'center' }}
+      >
         {renderPotions()}
       </Grid>
     </Box>

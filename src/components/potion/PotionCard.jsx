@@ -10,11 +10,12 @@ import PropTypes from 'prop-types'
 
 function PotionCard({ potion }) {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345}}>
             <CardMedia
                 component="img"
-                alt="potion"
+                sx={{ height: 350 }}
                 height="140"
+                alt="potion"
                 image={potion.attributes.image}
             />
             <CardContent>
