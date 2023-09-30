@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-// import AuthenticationService from "../services/AuthenticationService";
-// import { useEffect } from "react";
 
 const AuthenticationContext = React.createContext(); // Creamos el contexto que usaremos para manejar la autenticación.
 
