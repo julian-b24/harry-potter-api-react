@@ -4,7 +4,7 @@ import LoginModal from "./components/LoginModal";
 import { AuthenticationProvider } from "./context/AuthenticationContext";
 import "./fonts/HarryP.ttf";
 import Router from "./routes/index";
-import React, { useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);

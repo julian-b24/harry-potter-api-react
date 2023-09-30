@@ -9,21 +9,20 @@ import PropTypes from 'prop-types'
 
 
 function PotionCard({ potion }) {
-
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
                 alt="potion"
                 height="140"
-                image={potion.image}
+                image={potion.attributes.image}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {potion.slug}
+                    {potion.attributes.slug}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {potion.effect}
+                    {potion.attributes.effect}
                 </Typography>
             </CardContent>
             <CardActions>

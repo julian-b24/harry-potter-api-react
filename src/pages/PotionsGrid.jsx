@@ -12,7 +12,7 @@ function PotionsGrid() {
   const getPotions = async () => {
     try {
       const response = await axios.get('/potions')
-      setPotions(response.data)
+      setPotions(response.data.data)
     } catch (error) {
       console.log(error);
     }
