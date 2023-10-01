@@ -7,34 +7,30 @@ import Typography from '@mui/material/Typography';
 
 import PropTypes from 'prop-types'
 
-
-function PotionCard({ potion }) {
+function CharacterCard({ character }) {
     return (
         <Card sx={{ maxWidth: 345}}>
             <CardMedia
                 component="img"
                 sx={{ height: 350 }}
                 height="140"
-                alt="potion"
-                image={potion.attributes.image}
+                alt="character"
+                image={character.attributes.image}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {potion.attributes.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {potion.attributes.effect}
+                    {character.attributes.name}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" href={"/potions/" + potion.id}>Details and info.</Button>
+                <Button size="small" href={"/characters/" + character.id}>Details and info.</Button>
             </CardActions>
         </Card>
     )
 }
 
-PotionCard.propTypes = {
-    potion: PropTypes.object
+CharacterCard.propTypes = {
+    character: PropTypes.object
 }
 
-export default PotionCard
+export default CharacterCard
