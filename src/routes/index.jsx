@@ -12,15 +12,12 @@ const Router = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<HomeView />} />
-      <Route path="/movies" element={<MoviesGrid />}>
-        <Route path=":id" element={<MovieDetails />} />
-      </Route>
-      <Route path="/characters" element={<CharactersGrid />}>
-        <Route path=":id" element={<CharacterDetails />} />
-      </Route>
-      <Route path="/potions" element={<PotionsGrid />}>
-        <Route path=":id" element={<PotionDetails />} />
-      </Route>
+      <Route path="/movies" element={<MoviesGrid />} />
+      <Route path="/movies/:id" element={<MovieDetails />} />
+      <Route path="/characters" element={<CharactersGrid />} />
+      <Route path="/characters/:id" element={<CharacterDetails />} />
+      <Route path="/potions" element={<PotionsGrid />} />
+      <Route path="/potions/:id" element={<PotionDetails />} />
     </Routes>
   </BrowserRouter>
 );
