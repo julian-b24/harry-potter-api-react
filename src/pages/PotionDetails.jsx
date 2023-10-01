@@ -78,21 +78,21 @@ function PotionDetails() {
                   </AccordionDetails>
                 </Accordion>
 
-                <Accordion disabled={potion.attributes.inventors === null}>
+                <Accordion size="lg" disabled={potion.attributes.inventors === null}>
                   <AccordionSummary>Inventors</AccordionSummary>
                   <AccordionDetails>
                     {potion.attributes.inventors}
                   </AccordionDetails>
                 </Accordion>
 
-                <Accordion disabled={potion.attributes.manufacturers === null}>
+                <Accordion size="lg" disabled={potion.attributes.manufacturers === null}>
                   <AccordionSummary>Manufacturers</AccordionSummary>
                   <AccordionDetails>
                     {potion.attributes.manufacturers}
                   </AccordionDetails>
                 </Accordion>
 
-                <Accordion disabled={potion.attributes.ingredients === null}>
+                <Accordion size="lg" disabled={potion.attributes.ingredients === null}>
                   <AccordionSummary>Ingredients</AccordionSummary>
                   <AccordionDetails>
                     {potion.attributes.ingredients}
