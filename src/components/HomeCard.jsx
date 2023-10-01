@@ -13,9 +13,7 @@ function HomeCard({ topic, image }) {
     <Card
       className="mx-auto border-2 border-purple-900"
       sx={{ maxWidth: 450 }}
-      onClick={() => {
-        navigate(`/${topic}`);
-      }}
+      onClick={() => navigate(`/${topic}`)}
     >
       <CardActionArea>
         <CardMedia

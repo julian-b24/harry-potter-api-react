@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import AuthenticationContext from "../context/AuthenticationContext";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 function Header({ openLoginModal }) {
+  const navigate = useNavigate();
+
   const { loggedIn, setLoggedIn, user, setUser } = useContext(
     AuthenticationContext
   );
@@ -18,7 +21,12 @@ function Header({ openLoginModal }) {
       className="z-50 sticky top-0 w-full  h-16 flex items-center justify-between p-4 drop-shadow-md"
       style={{ backgroundColor: "#6F61C0" }}
     >
-      <p className="text-white harryp text-4xl">Potter Wiki</p>
+      <p
+        className="text-white harryp text-4xl cursor-pointer"
+        onClick={() => navigate("/")}
+      >
+        Potter Wiki
+      </p>
       {!loggedIn ? (
         <button
           className="rounded-md py-1 px-2 font-semibold text-white"

@@ -24,9 +24,8 @@ function App() {
           className="min-h-screen w-screen"
           style={{ backgroundColor: "#A084E8" }}
         >
-          <Header openLoginModal={openLoginModal} />
           {loginModal && <LoginModal closeLoginModal={closeLoginModal} />}
-          <Router />
+          <Router openLoginModal={openLoginModal} />
         </div>
       </AuthenticationProvider>
     </>
