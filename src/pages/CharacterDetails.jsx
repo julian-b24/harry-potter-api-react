@@ -80,7 +80,6 @@ function CharacterDetails() {
         alert("Upload successful!");
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url);
           setCharacterImage(url);
         });
       }
@@ -89,46 +88,25 @@ function CharacterDetails() {
 
   const fetchFirebaseImage = () => {
     // Connect to Firebase bucket to get the prevously stored character's image
-    let firebaseImage = null;
 
-    // const storageRef = ref(storage, `/characters-imgs/${character.id}.jpg`);
-    // try {
-    //   getDownloadURL(storageRef).then((url) => {
-    //     setImageUrl(url);
-    //     console.log(url);
-    //   });
-    // } catch (error) {}
-
-    const storageRef = ref(storage, "/characters-imgs");
-
-    listAll(storageRef)
-      .then((res) => {
-        // Search file by name
-        const imageFile = res.items.find((item) => item.name.includes(id));
-
-        if (imageFile) {
-          // Get the download URL of the found file
-          getDownloadURL(imageFile).then((url) => {
-            setCharacterImage(url);
-            console.log(">>> IMAGE FOUND: " + url);
-          });
-        } else {
-        }
-      })
-      .catch((error) => {
-        console.error("Error al buscar la imagen:", error);
+    const storageRef = ref(storage, `/characters-imgs/${id}`);
+    try {
+      getDownloadURL(storageRef).then((url) => {
+        setCharacterImage(url);
+        console.log(url);
       });
-
-    // Image change
-    if (firebaseImage != null) {
-      setCharacterImage(firebaseImage);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   useEffect(() => {
     getCharacter();
-    fetchFirebaseImage();
   }, []);
+
+  useEffect(() => {
+    fetchFirebaseImage();
+  }, [character]);
 
   return (
     <>

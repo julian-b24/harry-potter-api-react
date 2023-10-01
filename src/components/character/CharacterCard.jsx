@@ -20,12 +20,11 @@ function CharacterCard({ character }) {
 
   const fetchFirebaseImage = () => {
     // Connect to Firebase bucket to get the prevously stored character's image
-    let firebaseImage = null;
 
     // const storageRef = ref(storage, `/characters-imgs/${character.id}.jpg`);
     // try {
     //   getDownloadURL(storageRef).then((url) => {
-    //     setImageUrl(url);
+    //     setCharacterImage(url);
     //     console.log(url);
     //   });
     // } catch (error) {}
@@ -43,7 +42,6 @@ function CharacterCard({ character }) {
           // Get the download URL of the found file
           getDownloadURL(imageFile).then((url) => {
             setCharacterImage(url);
-            console.log(">>> IMAGE FOUND: " + url);
           });
         } else {
         }
@@ -51,15 +49,9 @@ function CharacterCard({ character }) {
       .catch((error) => {
         console.error("Error al buscar la imagen:", error);
       });
-
-    // Image change
-    if (firebaseImage != null) {
-      setCharacterImage(firebaseImage);
-    }
   };
 
   useEffect(() => {
-    console.log(characterImage);
     fetchFirebaseImage();
   }, []);
 
