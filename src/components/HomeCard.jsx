@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import AuthenticationContext from "../context/AuthenticationContext";
 
-function HomeCard({ topic, image }) {
+function HomeCard({ topic, image, openErrorAlert }) {
   const navigate = useNavigate();
+
+  const { loggedIn } = useContext(AuthenticationContext);
 
   return (
     <Card
       className="mx-auto border-2 border-purple-900"
       sx={{ maxWidth: 450 }}
-      onClick={() => navigate(`/${topic}`)}
+      onClick={() => {
+        if (loggedIn) {
+          navigate(`/${topic}`);
+        } else {
+          navigate("/?error");
+          openErrorAlert();
+        }
+      }}
     >
       <CardActionArea>
         <CardMedia
