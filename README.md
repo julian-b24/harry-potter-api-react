@@ -1,8 +1,14 @@
-# React + Vite
+# Harry Potter Wiki
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una página web que hace de Wiki para el mundo de Harry Potter y consume sus datos de la API de Harry Potter DB (https://potterdb.com/).
 
-Currently, two official plugins are available:
+## Tecnologías usadas
+Para el desarrollo de este proyecto se utilizaron las tecnologías de React, Vite, Firebase, Tailwindcss y MaterialUI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Despliegue
+El despliegue se realizó usando GitHub Pages y se encuentra en la siguiente dirección web: https://julian-b24.github.io/harry-potter-api-react/
+
+## Credenciales de acceso
+Las credenciales de acceso para loggearse en la web son:
+<br><strong>email:</strong> admin@mail.com
+<br><strong>password:</strong> admin
