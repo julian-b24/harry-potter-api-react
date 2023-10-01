@@ -15,11 +15,11 @@ function MovieCard({ movie }) {
                 sx={{ height: 350 }}
                 height="140"
                 alt="movie"
-                image={movie.attributes.image}
+                image={movie.attributes.poster}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {movie.attributes.name}
+                    {movie.attributes.title}
                 </Typography>
             </CardContent>
             <CardActions>
