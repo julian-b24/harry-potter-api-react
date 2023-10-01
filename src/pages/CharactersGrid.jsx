@@ -4,21 +4,23 @@ import axios from "../../config/axios"
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import CharacterCard from "../components/character/CharacterCard"
+import { Button } from "@mui/material";
 
 function CharactersGrid() {
 
   const [characters, setcharacters] = useState([])
+  const [page, setPage] = useState(1)
 
   const getcharacters = async () => {
     try {
-      const response = await axios.get('/characters')
+      const response = await axios.get('/characters?page[number]=' + page)
       setcharacters(response.data.data)
     } catch (error) {
       console.log(error);
     }
   }
 
-  useEffect(() => { getcharacters() }, [])
+  useEffect(() => { getcharacters() }, [page])
 
   const renderCharacters = () => {
     return characters.map((character) =>
@@ -49,6 +51,15 @@ function CharactersGrid() {
         {renderCharacters()}
       </Grid>
     </Box>
+
+    <div>
+      {page > 1 && 
+      <Button onClick={() => {setPage(page - 1)}}>Previous Page</Button>
+      }
+      {page < 41 && 
+      <Button onClick={() => {setPage(page + 1)}}>Next Page</Button>
+      }
+    </div>
 
     </div>
   );
