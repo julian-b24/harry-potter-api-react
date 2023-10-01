@@ -27,7 +27,7 @@ function PotionCard({ potion }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Details and info.</Button>
+                <Button size="small" href={"/potions/" + potion.id}>Details and info.</Button>
             </CardActions>
         </Card>
     )
