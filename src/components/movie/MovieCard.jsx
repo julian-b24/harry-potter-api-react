@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -10,8 +12,9 @@ import PropTypes from 'prop-types'
 
 const base = "/harry-potter-api-react"
 function MovieCard({ movie }) {
+    const navigate = useNavigate();
     return (
-        <Card sx={{ maxWidth: 345}}>
+        <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
                 sx={{ height: 350 }}
@@ -25,7 +28,11 @@ function MovieCard({ movie }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" href={base + "/movies/" + movie.id}>Get Details</Button>
+                <Button size="small"
+                    onClick={() => {
+                        navigate(`${base}/movies/${movie.id}`);
+                    }}
+                >Get Details</Button>
             </CardActions>
         </Card>
     )

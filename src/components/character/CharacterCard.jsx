@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -16,6 +17,8 @@ const base = "/harry-potter-api-react"
 const DEFAULT_IMAGE =
   "https://i.pinimg.com/1200x/0d/05/ec/0d05ecd57fb6909002a47dcc8ef32fe8.jpg";
 function CharacterCard({ character }) {
+
+  const navigate = useNavigate();
   const [characterImage, setCharacterImage] = useState(
     character.attributes.image
   );
@@ -72,7 +75,11 @@ function CharacterCard({ character }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" href={base + "/characters/" + character.id}>
+        <Button size="small"
+          onClick={() => {
+            navigate(`${base}/characters/${character.id}`);
+          }}
+        >
           Details and info.
         </Button>
       </CardActions>
