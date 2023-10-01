@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,6 +10,21 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types'
 
 function CharacterCard({ character }) {
+
+    const [characterImage, setCharacterImage] = useState(character.attributes.image)
+
+    const getFireBaseImage = () => {
+        //TODO: Connect to FB bucket to get the prevously stoerd character's image
+        let firebaseImage = null
+
+        //Image change
+        if (firebaseImage != null) {
+            setCharacterImage(firebaseImage)
+        }
+    }
+
+    useEffect(() => { getFireBaseImage(); }, [])
+
     return (
         <Card sx={{ maxWidth: 345}}>
             <CardMedia
@@ -15,7 +32,7 @@ function CharacterCard({ character }) {
                 sx={{ height: 350 }}
                 height="140"
                 alt="character"
-                image={character.attributes.image}
+                image={characterImage}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,8 +9,19 @@ import Typography from '@mui/material/Typography';
 
 import PropTypes from 'prop-types'
 
-
+const DEFAULT_IMAGE = "";
 function PotionCard({ potion }) {
+
+    const [potionImage, setPotionImage] = useState(potion.attributes.image)
+
+    useEffect(() => { setDefaultImage()}, [])
+
+    const setDefaultImage = () => {
+        if(potionImage === null){
+            setPotionImage(DEFAULT_IMAGE)
+        }
+    }
+
     return (
         <Card sx={{ maxWidth: 345}}>
             <CardMedia
@@ -16,7 +29,7 @@ function PotionCard({ potion }) {
                 sx={{ height: 350 }}
                 height="140"
                 alt="potion"
-                image={potion.attributes.image}
+                image={potionImage}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
