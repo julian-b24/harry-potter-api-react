@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 
 import PropTypes from 'prop-types'
 
+
+const base = "/harry-potter-api-react"
 function MovieCard({ movie }) {
     return (
         <Card sx={{ maxWidth: 345}}>
@@ -23,7 +25,7 @@ function MovieCard({ movie }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" href={"/movies/" + movie.id}>Get Details</Button>
+                <Button size="small" href={base + "/movies/" + movie.id}>Get Details</Button>
             </CardActions>
         </Card>
     )
