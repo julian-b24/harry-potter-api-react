@@ -4,7 +4,7 @@ import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
-const base = "/harry-potter-api-react/"
+const base = "/harry-potter-api-react/";
 
 function Header({ openLoginModal }) {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ function Header({ openLoginModal }) {
   const handleLogout = () => {
     setLoggedIn(false);
     setUser(null);
+    navigate(base);
   };
 
   return (

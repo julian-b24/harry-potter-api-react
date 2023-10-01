@@ -91,7 +91,7 @@ function LoginModal({ closeLoginModal }) {
           <div className="flex justify-center py-4 w-full pt-8">
             <button
               className="rounded-3xl p-0.5 w-full"
-              style={{ backgroundColor: "#4FBDBA" }}
+              style={{ backgroundColor: "#504099" }}
               onClick={(e) => {
                 handleLogin(e);
               }}

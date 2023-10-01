@@ -34,13 +34,10 @@ import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
 import { Button } from "@mui/material";
 
 import storage from "../firebaseConfig.js";
-import {
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-  listAll,
-} from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
+const DEFAULT_IMAGE =
+  "https://i.pinimg.com/1200x/0d/05/ec/0d05ecd57fb6909002a47dcc8ef32fe8.jpg";
 function CharacterDetails() {
   const { id } = useParams();
   const [character, setCharacter] = useState(null);
@@ -115,8 +112,7 @@ function CharacterDetails() {
           {/*character Image*/}
           <AspectRatio objectFit="contain">
             <img
-              src={characterImage}
-              srcSet={characterImage}
+              src={characterImage === null ? DEFAULT_IMAGE : characterImage}
               alt={character.attributes.slug}
             />
           </AspectRatio>
