@@ -76,7 +76,7 @@ function PotionDetails() {
             <Accordion disabled={potion.attributes.manufacturers === null}>
               <AccordionSummary>Manufacturers</AccordionSummary>
               <AccordionDetails>
-                a
+                {potion.attributes.manufacturers}
               </AccordionDetails>
             </Accordion>
 
