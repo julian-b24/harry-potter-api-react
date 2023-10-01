@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,7 +12,8 @@ import PropTypes from 'prop-types'
 
 const DEFAULT_IMAGE = "";
 function PotionCard({ potion }) {
-
+    
+    const navigate = useNavigate();
     const [potionImage, setPotionImage] = useState(potion.attributes.image)
 
     useEffect(() => { setDefaultImage()}, [])
@@ -40,7 +42,7 @@ function PotionCard({ potion }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" href={"/potions/" + potion.id}>Details and info.</Button>
+                <Button size="small" onClick={() => {navigate(`/potions/${potion.id}`)}} >Details and info.</Button>
             </CardActions>
         </Card>
     )
