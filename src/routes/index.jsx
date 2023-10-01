@@ -11,13 +11,15 @@ import TestDetails from "../pages/TestDetails";
 import Header from "../components/Header";
 import RequireAuth from "../components/RequireAuth";
 
+const base = "/harry-potter-api-react/";
+
 const Router = ({ openLoginModal }) => (
   <BrowserRouter>
     <Header openLoginModal={openLoginModal} />
     <Routes>
-      <Route path="/" element={<HomeView />} />
+      <Route path={base} element={<HomeView />} />
       <Route
-        path="/movies"
+        path={base + "movies"}
         element={
           <RequireAuth>
             <MoviesGrid />
@@ -25,7 +27,7 @@ const Router = ({ openLoginModal }) => (
         }
       />
       <Route
-        path="/movies/:id"
+        path={base + "movies/:id"}
         element={
           <RequireAuth>
             <MovieDetails />
@@ -33,7 +35,7 @@ const Router = ({ openLoginModal }) => (
         }
       />
       <Route
-        path="/characters"
+        path={base + "characters"}
         element={
           <RequireAuth>
             <CharactersGrid />
@@ -41,7 +43,7 @@ const Router = ({ openLoginModal }) => (
         }
       />
       <Route
-        path="/characters/:id"
+        path={base + "characters/:id"}
         element={
           <RequireAuth>
             <CharacterDetails />
@@ -49,7 +51,7 @@ const Router = ({ openLoginModal }) => (
         }
       />
       <Route
-        path="/potions"
+        path={base + "potions"}
         element={
           <RequireAuth>
             <PotionsGrid />
@@ -57,14 +59,14 @@ const Router = ({ openLoginModal }) => (
         }
       />
       <Route
-        path="/potions/:id"
+        path={base + "potions/:id"}
         element={
           <RequireAuth>
             <PotionDetails />
           </RequireAuth>
         }
       />
-      <Route path="/characters/test" element={<TestDetails />} />
+      <Route path={base + "characters/test"} element={<TestDetails />} />
     </Routes>
   </BrowserRouter>
 );

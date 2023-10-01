@@ -4,6 +4,8 @@ import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
+const base = "/harry-potter-api-react/"
+
 function Header({ openLoginModal }) {
   const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ function Header({ openLoginModal }) {
     >
       <p
         className="text-white harryp text-4xl cursor-pointer"
-        onClick={() => navigate("/")}
+        onClick={() => navigate(base)}
       >
         Potter Wiki
       </p>

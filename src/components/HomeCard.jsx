@@ -7,6 +7,8 @@ import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import AuthenticationContext from "../context/AuthenticationContext";
 
+const base = "/harry-potter-api-react";
+
 function HomeCard({ topic, image, openErrorAlert }) {
   const navigate = useNavigate();
 
@@ -18,9 +20,9 @@ function HomeCard({ topic, image, openErrorAlert }) {
       sx={{ maxWidth: 450 }}
       onClick={() => {
         if (loggedIn) {
-          navigate(`/${topic}`);
+          navigate(`${base}/${topic}`);
         } else {
-          navigate("/?error");
+          navigate(`${base}/?error`);
           openErrorAlert();
         }
       }}

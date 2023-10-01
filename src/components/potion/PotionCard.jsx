@@ -10,6 +10,8 @@ import Typography from "@mui/material/Typography";
 
 import PropTypes from "prop-types";
 
+
+const base = "/harry-potter-api-react"
 const DEFAULT_IMAGE =
   "https://ar.happyvalentinesday2020.online/pics/webstockreview.net/images/cauldron-clipart-harry-potter-cauldron-8.jpg";
 function PotionCard({ potion }) {
@@ -37,7 +39,7 @@ function PotionCard({ potion }) {
         <Button
           size="small"
           onClick={() => {
-            navigate(`/potions/${potion.id}`);
+            navigate(`${base}/potions/${potion.id}`);
           }}
         >
           Details and info.
