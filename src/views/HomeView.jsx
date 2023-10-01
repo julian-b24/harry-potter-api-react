@@ -1,8 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import HomeCard from "../components/HomeCard";
 import { Alert, Snackbar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import AuthenticationContext from "../context/AuthenticationContext";
+
+const base = "/harry-potter-api-react/";
 
 function HomeView() {
+  const navigate = useNavigate();
+
+  const { loggedIn } = useContext(AuthenticationContext);
+
   const [error, setError] = useState(false);
   const [vertical, setVertical] = useState("top");
   const [horizontal, setHorizontal] = useState("center");
@@ -15,8 +23,13 @@ function HomeView() {
     }
   }, []);
 
+  useEffect(() => {
+    if (loggedIn) {
+      navigate(base);
+    }
+  }, [loggedIn]);
+
   const handleOpen = () => {
-    console.log("se ejecuta");
     setError(true);
   };
 

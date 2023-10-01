@@ -40,17 +40,25 @@ function PotionsGrid() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Grid
-        container
-        alignItems="center"
-        rowSpacing={1}
-        columns={{ xs: 5 }}
-        sx={{ justifyContent: "center" }}
+    <div>
+      <p
+        className="pt-10 text-center harryp"
+        style={{ fontSize: 100, color: "#313866" }}
       >
-        {renderPotions()}
-      </Grid>
-    </Box>
+        Potions
+      </p>
+      <Box sx={{ width: "100%" }}>
+        <Grid
+          container
+          alignItems="center"
+          rowSpacing={1}
+          columns={{ xs: 5 }}
+          sx={{ justifyContent: "center" }}
+        >
+          {renderPotions()}
+        </Grid>
+      </Box>
+    </div>
   );
 }
 

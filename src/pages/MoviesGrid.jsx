@@ -38,6 +38,7 @@ function MoviesGrid() {
       </Grid>
     ));
   };
+
   return (
     <div>
       <p
