@@ -4,11 +4,16 @@ import CharacterCard from "../components/character/CharacterCard";
 
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
+import Pagination from '@mui/material/Pagination';
+
 
 function CharactersGrid() {
   const [characters, setcharacters] = useState([]);
   const [page, setPage] = useState(1);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   const getcharacters = async () => {
     try {
@@ -61,24 +66,10 @@ function CharactersGrid() {
       </Box>
 
       <div>
-        {page > 1 && (
-          <Button
-            onClick={() => {
-              setPage(page - 1);
-            }}
-          >
-            Previous Page
-          </Button>
-        )}
-        {page < 41 && (
-          <Button
-            onClick={() => {
-              setPage(page + 1);
-            }}
-          >
-            Next Page
-          </Button>
-        )}
+      <div className="flex justify-center">
+        <Pagination variant="outlined" color="secondary"
+        count={41} page={page} onChange={handleChange} />
+      </div>
       </div>
     </div>
   );

@@ -4,13 +4,20 @@ import PotionCard from "../components/potion/PotionCard";
 
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Pagination from '@mui/material/Pagination';
+
 
 function PotionsGrid() {
   const [potions, setPotions] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   const getPotions = async () => {
     try {
-      const response = await axios.get("/potions");
+      const response = await axios.get("/potions?page[number]=" +  page);
       setPotions(response.data.data);
     } catch (error) {
       console.log(error);
@@ -19,7 +26,7 @@ function PotionsGrid() {
 
   useEffect(() => {
     getPotions();
-  }, []);
+  }, [page]);
 
   const renderPotions = () => {
     return potions.map((potion) => (
@@ -58,6 +65,10 @@ function PotionsGrid() {
           {renderPotions()}
         </Grid>
       </Box>
+      <div className="flex justify-center">
+        <Pagination variant="outlined" color="secondary"
+        count={2} page={page} onChange={handleChange} />
+      </div>
     </div>
   );
 }
