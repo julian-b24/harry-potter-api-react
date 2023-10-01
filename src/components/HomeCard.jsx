@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+const base = "/harry-potter-api-react"
+
 function HomeCard({ topic, image }) {
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ function HomeCard({ topic, image }) {
     <Card
       className="mx-auto border-2 border-purple-900"
       sx={{ maxWidth: 450 }}
-      onClick={() => navigate(`/${topic}`)}
+      onClick={() => navigate(`${base}/${topic}`)}
     >
       <CardActionArea>
         <CardMedia
