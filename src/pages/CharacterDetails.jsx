@@ -2,6 +2,7 @@ import axios from "../../config/axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import Grid from "@mui/material/Unstable_Grid2";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
@@ -15,6 +16,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 
+import { deepPurple } from "@mui/material/colors";
 import LinkIcon from "@mui/icons-material/Link";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BloodtypeIcon from "@mui/icons-material/Bloodtype";
@@ -108,323 +110,382 @@ function CharacterDetails() {
   return (
     <>
       {character && (
-        <Box sx={{ width: 300, borderRadius: "sm", p: 1 }}>
-          {/*character Image*/}
-          <AspectRatio objectFit="contain">
-            <img
-              src={characterImage === null ? DEFAULT_IMAGE : characterImage}
-              alt={character.attributes.slug}
-            />
-          </AspectRatio>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-          <Button
-            onClick={() => {
-              handleUpload();
-            }}
+        <Box
+          sx={{
+            width: "100%",
+            borderRadius: "sm",
+            p: 4,
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            sx={{ display: "flexbox", justifyContent: "space-evenly" }}
           >
-            Change image
-          </Button>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {/*Potion Image*/}
+              <AspectRatio objectFit="contain" sx={{ width: 600 }}>
+                <img
+                  src={characterImage === null ? DEFAULT_IMAGE : characterImage}
+                  alt={character.attributes.slug}
+                />
+              </AspectRatio>
+              <div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
+                <Button
+                  onClick={() => {
+                    handleUpload();
+                  }}
+                >
+                  Change image
+                </Button>
+              </div>
+            </Grid>
 
-          {/*Character name*/}
-          <Box>
-            <Typography level="h3">{character.attributes.name}</Typography>
-          </Box>
+            <Grid item xs={6}>
+              {/*Character name*/}
+              <Box>
+                <Typography level="h3">{character.attributes.name}</Typography>
+              </Box>
 
-          {/*Alias names, family, jobs, romances and wands acordeons*/}
-          <AccordionGroup sx={{ maxWidth: 400 }}>
-            <Accordion disabled={character.attributes.alias_names === null}>
-              <AccordionSummary>Alias names</AccordionSummary>
-              <AccordionDetails>
-                {character.attributes.alias_names}
-              </AccordionDetails>
-            </Accordion>
+              {/*Alias names, family, jobs, romances and wands acordeons*/}
+              <AccordionGroup sx={{ maxWidth: "100%", fontSize: "1.2em" }}>
+                <Accordion
+                  size="lg"
+                  disabled={character.attributes.alias_names === null}
+                >
+                  <AccordionSummary>Alias names</AccordionSummary>
+                  <AccordionDetails>
+                    {character.attributes.alias_names}
+                  </AccordionDetails>
+                </Accordion>
 
-            <Accordion disabled={character.attributes.family_members === null}>
-              <AccordionSummary>Family</AccordionSummary>
-              <AccordionDetails>
-                {character.attributes.family_members}
-              </AccordionDetails>
-            </Accordion>
+                <Accordion
+                  size="lg"
+                  disabled={character.attributes.family_members === null}
+                >
+                  <AccordionSummary>Family</AccordionSummary>
+                  <AccordionDetails>
+                    {character.attributes.family_members}
+                  </AccordionDetails>
+                </Accordion>
 
-            <Accordion disabled={character.attributes.jobs === null}>
-              <AccordionSummary>Jobs</AccordionSummary>
-              <AccordionDetails>{character.attributes.jobs}</AccordionDetails>
-            </Accordion>
+                <Accordion
+                  size="lg"
+                  disabled={character.attributes.jobs === null}
+                >
+                  <AccordionSummary>Jobs</AccordionSummary>
+                  <AccordionDetails>
+                    {character.attributes.jobs}
+                  </AccordionDetails>
+                </Accordion>
 
-            <Accordion disabled={character.attributes.romances === null}>
-              <AccordionSummary>Romances</AccordionSummary>
-              <AccordionDetails>
-                {character.attributes.romances}
-              </AccordionDetails>
-            </Accordion>
+                <Accordion
+                  size="lg"
+                  disabled={character.attributes.romances === null}
+                >
+                  <AccordionSummary>Romances</AccordionSummary>
+                  <AccordionDetails>
+                    {character.attributes.romances}
+                  </AccordionDetails>
+                </Accordion>
 
-            <Accordion disabled={character.attributes.wands === null}>
-              <AccordionSummary>Wands</AccordionSummary>
-              <AccordionDetails>{character.attributes.wands}</AccordionDetails>
-            </Accordion>
-          </AccordionGroup>
+                <Accordion
+                  size="lg"
+                  disabled={character.attributes.wands === null}
+                >
+                  <AccordionSummary>Wands</AccordionSummary>
+                  <AccordionDetails>
+                    {character.attributes.wands}
+                  </AccordionDetails>
+                </Accordion>
+              </AccordionGroup>
 
-          {/*Extra info: Born, gender, specie, hair color, eye color, skin color, height, weight,
+              {/*Extra info: Born, gender, specie, hair color, eye color, skin color, height, weight,
              blood status, marital status, nationality, boggart, house, patronus, 
              animagus, died,  and wiki link*/}
-          <List
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-          >
-            {/*Born*/}
-            {character.attributes.born && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <DateRangeIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Born"
-                  secondary={character.attributes.born}
-                />
-              </ListItem>
-            )}
+              <List
+                sx={{
+                  width: "100%",
+                  maxWidth: 360,
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "nowrap",
+                }}
+              >
+                {/*Born*/}
+                {character.attributes.born && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <DateRangeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Born"
+                      secondary={character.attributes.born}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Gender*/}
-            {character.attributes.gender && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <TransgenderIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Gender"
-                  secondary={character.attributes.gender}
-                />
-              </ListItem>
-            )}
+                {/*Gender*/}
+                {character.attributes.gender && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <TransgenderIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Gender"
+                      secondary={character.attributes.gender}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Specie*/}
-            {character.attributes.specie && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <PetsIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Specie"
-                  secondary={character.attributes.specie}
-                />
-              </ListItem>
-            )}
+                {/*Specie*/}
+                {character.attributes.specie && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <PetsIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Specie"
+                      secondary={character.attributes.specie}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Hair color*/}
-            {character.attributes.hair_color && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <FormatColorFillIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Hair color"
-                  secondary={character.attributes.hair_color}
-                />
-              </ListItem>
-            )}
+                {/*Hair color*/}
+                {character.attributes.hair_color && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <FormatColorFillIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Hair color"
+                      secondary={character.attributes.hair_color}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Eye color*/}
-            {character.attributes.eye_color && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <VisibilityIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Eye color"
-                  secondary={character.attributes.eye_color}
-                />
-              </ListItem>
-            )}
+                {/*Eye color*/}
+                {character.attributes.eye_color && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <VisibilityIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Eye color"
+                      secondary={character.attributes.eye_color}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Skin color*/}
-            {character.attributes.skin_color && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <PaletteIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Skin color"
-                  secondary={character.attributes.skin_color}
-                />
-              </ListItem>
-            )}
+                {/*Skin color*/}
+                {character.attributes.skin_color && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <PaletteIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Skin color"
+                      secondary={character.attributes.skin_color}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Height*/}
-            {character.attributes.height && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <HeightIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Height"
-                  secondary={character.attributes.height}
-                />
-              </ListItem>
-            )}
+                {/*Height*/}
+                {character.attributes.height && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <HeightIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Height"
+                      secondary={character.attributes.height}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Weight*/}
-            {character.attributes.weight && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <ScaleIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Weight"
-                  secondary={character.attributes.weight}
-                />
-              </ListItem>
-            )}
+                {/*Weight*/}
+                {character.attributes.weight && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <ScaleIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Weight"
+                      secondary={character.attributes.weight}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Blood Status*/}
-            {character.attributes.blood_status && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <BloodtypeIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Blood Status"
-                  secondary={character.attributes.blood_status}
-                />
-              </ListItem>
-            )}
+                {/*Blood Status*/}
+                {character.attributes.blood_status && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <BloodtypeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Blood Status"
+                      secondary={character.attributes.blood_status}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Marital status*/}
-            {character.attributes.marital_status && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <FavoriteBorderIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Marital status"
-                  secondary={character.attributes.marital_status}
-                />
-              </ListItem>
-            )}
+                {/*Marital status*/}
+                {character.attributes.marital_status && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <FavoriteBorderIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Marital status"
+                      secondary={character.attributes.marital_status}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Nationality*/}
-            {character.attributes.nationality && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <PublicIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Nationality"
-                  secondary={character.attributes.nationality}
-                />
-              </ListItem>
-            )}
+                {/*Nationality*/}
+                {character.attributes.nationality && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <PublicIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Nationality"
+                      secondary={character.attributes.nationality}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Boggart*/}
-            {character.attributes.boggart && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <PestControlRodentIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Boggart"
-                  secondary={character.attributes.boggart}
-                />
-              </ListItem>
-            )}
+                {/*Boggart*/}
+                {character.attributes.boggart && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <PestControlRodentIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Boggart"
+                      secondary={character.attributes.boggart}
+                    />
+                  </ListItem>
+                )}
 
-            {/*House*/}
-            {character.attributes.house && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <CastleIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="House"
-                  secondary={character.attributes.house}
-                />
-              </ListItem>
-            )}
+                {/*House*/}
+                {character.attributes.house && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <CastleIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="House"
+                      secondary={character.attributes.house}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Patronus*/}
-            {character.attributes.patronus && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <EmojiNatureIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Patronus"
-                  secondary={character.attributes.patronus}
-                />
-              </ListItem>
-            )}
+                {/*Patronus*/}
+                {character.attributes.patronus && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <EmojiNatureIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Patronus"
+                      secondary={character.attributes.patronus}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Animagus*/}
-            {character.attributes.animagus && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <PestControlRodentIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Animagus"
-                  secondary={character.attributes.animagus}
-                />
-              </ListItem>
-            )}
+                {/*Animagus*/}
+                {character.attributes.animagus && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <PestControlRodentIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Animagus"
+                      secondary={character.attributes.animagus}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Died*/}
-            {character.attributes.died && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <SentimentVeryDissatisfiedIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Died"
-                  secondary={character.attributes.died}
-                />
-              </ListItem>
-            )}
+                {/*Died*/}
+                {character.attributes.died && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <SentimentVeryDissatisfiedIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Died"
+                      secondary={character.attributes.died}
+                    />
+                  </ListItem>
+                )}
 
-            {/*Wiki*/}
-            {character.attributes.wiki && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <LinkIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Wiki"
-                  secondary={character.attributes.wiki}
-                />
-              </ListItem>
-            )}
-          </List>
+                {/*Wiki*/}
+                {character.attributes.wiki && (
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: deepPurple[400] }}>
+                        <LinkIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Wiki"
+                      secondary={character.attributes.wiki}
+                    />
+                  </ListItem>
+                )}
+              </List>
+            </Grid>
+          </Grid>
         </Box>
       )}
     </>
